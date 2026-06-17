@@ -1,0 +1,36 @@
+@use "../styles/variables" as *;
+@use "../styles/mixins" as *;
+
+.contact{
+    
+    //media query styling max-width:567px
+    @include down(sm){
+        @include padding-inline(1rem);
+    }
+
+    &__container {
+        background-color:$text-dark;
+        @include position(relative);
+        z-index:1;
+        border-radius: $radius-lg;
+        padding:1rem;
+    }
+
+    &__text {
+        @include flex(center, space-between);
+
+        p{
+            margin:0;
+            color:$text-light;
+            font-size:1.5rem;
+            font-weight:800;
+        }
+        .text__1 {
+            @include flex();
+            svg {
+                width:2rem;
+                margin-right:.5rem;
+            }
+        }
+    }
+}

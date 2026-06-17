@@ -1,0 +1,28 @@
+@use "../variables" as *;
+@use "../mixins" as *;
+@use "sass:map";
+
+// Container
+.container {
+  width: 100%;
+  margin-inline: auto;
+  padding-inline: 1rem;
+
+  @each $key, $bp in $breakpoints {
+    @media (min-width: $bp) {
+      max-width: map.get($container-max-widths, $key);
+    }
+  }
+}
+
+//container-fluid
+.container-fluid{
+  width: 100%;
+  margin-inline:0;
+  max-width:100%;
+  padding-inline: 1rem;
+}
+
+.top--space{
+    @include spacing(padding-top, 5rem);
+}

@@ -1,0 +1,134 @@
+@use "../styles/variables" as *;
+@use "../styles/mixins" as *;
+
+// hero styling
+.hero{
+
+    //media query styling max-width:567px
+    @include down(sm){
+        @include padding-inline(1rem);
+    }
+
+    // container styling
+    &__container {
+        @include position(relative);
+        @include bg-image(
+        $url: "/images/herobg.webp"
+        );
+        z-index:1;
+        border-radius: $radius-lg;
+    }
+
+    // hero noise gif styling
+    &__noise {
+        opacity: 0.2;
+        background-image: url(/images/noise.gif);
+        width: 100%;
+        height: 100%;
+        @include position(absolute,
+            $top:0,
+            $left:0
+        );
+        z-index:-1;
+        border-radius: 1rem;
+    }
+
+    // hero content styling
+    &__content{
+        @include grid();
+        @include grid-columns(23% 30% 42%);
+        gap:2rem;
+        padding:10rem 0 5rem 0;
+        @include position(relative);
+        align-items: center;
+
+        // media query styling max-width:1400px
+        @include down(xxl) {
+            @include grid-columns(20% 28% 45%);
+            padding: 8rem 0 5rem 0;
+        }
+
+        //media query styling max-width:1200px
+        @include down(xl) {
+        @include grid-columns(30% 1fr);
+            padding: 5rem 0 5rem 0;
+        }
+
+        //media query styling max-width:576px
+        @include down(sm){
+           @include grid-columns(1fr); 
+           text-align:center;
+        }
+    }
+
+    // hero content image styling
+    &__image{
+        border-radius: 0.5rem;
+        overflow: hidden;
+
+        //media query styling max-width:576px
+        @include down(sm){
+           @include flex();
+        }
+    }
+
+    // hero content intro styling
+    &__intro{
+        color:$text-light;
+        svg{
+            width:2.5rem;
+        }
+        p{
+            font-weight:800;
+        }
+    }
+
+    // hero content social styling
+    &__social{
+        @include flex(center, space-between, $gap:1rem);
+        @include border($side:top, $color:$text-light);
+        @include spacing(padding-top, 1.5rem);
+        span {
+            a {
+                border-radius:1rem;
+                @include padding-inline(1.063rem);
+                @include padding-block(0.2rem);
+                @include border();
+                font-weight:$font-medium;
+                color:$text-light;
+                display: inline-flex;
+                vertical-align: middle;
+                svg{
+                    width: 0.5rem;
+                    transform: translate(0.188rem, 0.25rem);
+                }
+                &:hover{
+                    background-color:$accent-dark;
+                }
+            }
+        }
+    }
+
+    // hero content title styling
+    &__title {
+        h1{
+            font-size:4rem;
+            color:$text-light;
+            text-align:right;
+
+            //media query styling max-width:1400px
+            @include down(xxl){
+                font-size:3.5rem;
+            }   
+        }
+
+        //media query styling max-width:1200px
+        @include down (xl){
+            // grid-column: 1 / -1;
+            // h1{
+            //     text-align:center;
+            // }
+            display:none;
+        }
+    }
+}

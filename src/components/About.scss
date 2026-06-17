@@ -1,0 +1,86 @@
+@use "../styles/variables" as *;
+@use "../styles/mixins" as *;
+
+//about styling 
+.about{
+
+    //media query styling max-width:567px
+    @include down(sm){
+        @include padding-inline(1rem);
+    }
+
+    // container styling
+    &__container {
+        @include position(relative);
+        z-index:1;
+        @include grid();
+        @include grid-columns(40% 50%);
+        gap:4rem;
+        padding: 3rem 1rem;
+        background-color:$light-blue;
+        @include border($color:$primary);
+        border-radius: $radius-lg;
+
+        //media query styling max-width:1200px
+        @include down(xl){
+            @include grid-columns(1fr);
+        }
+
+        // pseudo-element before styling
+        &:before{
+            content:"";
+            @include position(absolute,
+            $top:0,
+            $left:40%);
+            background-color:$text-dark;
+            width: 0.063rem;
+            height: 100%;
+
+            //media query styling max-width:1200px
+            @include down(xl){
+               display:none;
+            }
+            
+        }
+    }
+
+    // about video styling
+    &__video{
+        display:block;
+        
+        video{
+            object-fit:cover;
+            mask-image: url('/images/abtshape.svg');
+            mask-repeat: no-repeat;
+            mask-size: contain;
+            mask-position: center;
+        }
+
+        //media query styling max-width:1200px
+        @include down(xl){
+            @include position(absolute,
+            $top:0.938rem,
+            $right:0,);
+            width:10rem;
+        }
+    }
+
+    //about title styling
+    &__title{
+        color:$text-dark;
+        font-weight:normal;
+        i{
+            font-weight:700;
+            font-style:normal;
+        }
+    }
+
+    //about text styling
+    &__text{
+        display: block;
+        p:last-child{
+            margin:0;
+        }
+    }
+
+}

@@ -1,0 +1,86 @@
+@use "../styles/variables" as *;
+@use "../styles/mixins" as *;
+
+//Skills styling
+.skills{
+
+    //media query styling max-width:567px
+    @include down(sm){
+        @include padding-inline(1rem);
+    }
+
+    //skills container styling
+    &__container{
+        @include position(relative);
+        z-index:1;
+        border-radius: $radius-lg;
+        padding: 5rem 1rem;
+        @include bg-image(
+        $url: "/images/skillsbg.webp"
+        );
+    }
+
+    // gif styling
+    &__gif{
+        @include position(absolute,
+        $top:0,
+        $left:0,
+        );
+        z-index:-1;
+        width:100%;
+        height:100%;
+        border-radius: 1rem;
+        @include bg-image(
+        $url: "/images/aboutgif.gif"
+        );
+        opacity: .5;
+    }
+
+    // skills title styling
+    &__title{
+        text-align:center;
+        color:$text-light;
+    }
+
+    //skills list styling
+    &__list{
+        @include grid(repeat(5, 1fr), 2rem);
+
+        //media query styling max-width:992px
+        @include down (lg) {
+            @include grid(repeat(4, 1fr), 2rem);
+        }
+
+        //media query styling max-width:768px
+        @include down (md) {
+        @include grid(repeat(3, 1fr), 2rem);
+        }
+
+        //media query styling max-width:567px
+        @include down (sm) {
+        @include grid(repeat(2, 1fr), 2rem);
+        }
+
+        //media query styling max-width:480px
+        @include down (xs) {
+        @include grid(repeat(1, 1fr), 1rem);
+        }
+        li{
+            text-align:center;
+            background-color:$text-light;
+            @include inline-flex(
+                $direction:column,
+            );
+            color:$primary;
+            border-radius: .3rem;
+            text-transform:capitalize;
+            width: 100%;
+            font-weight:$font-black-bold;
+            padding: .5rem;
+
+            svg{
+                width:2rem;
+            }
+        }
+    }
+}

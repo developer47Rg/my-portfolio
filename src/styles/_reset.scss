@@ -1,0 +1,388 @@
+@use "variables" as *;
+@use "mixins" as *;
+@use "sass:map";
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+}
+@media (prefers-reduced-motion: no-preference) {
+  :root {
+    scroll-behavior: smooth;
+  }
+}
+html {
+  line-height: 1.5em;
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+  font-size: 16px;
+}
+@media (max-width: 768px) {
+  html {
+    font-size: 14px;
+  }
+}
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  margin: 0;
+  padding: 0;
+  font-family:$font-primary;
+  color:$text-dark;
+  background-color:$background;
+  font-size: 1rem;
+  line-height: 1.5em;
+}
+img,
+picture,
+video,
+canvas,
+svg,
+a {
+  display: block;
+  max-width: 100%;
+}
+input,
+button,
+textarea,
+select {
+  font: inherit;
+  transition:$transition-base;
+}
+::-moz-placeholder {
+  color:$secondary;
+  font-style: normal;
+  opacity: 1;
+}
+::placeholder {
+  color:$secondary;
+  font-style: normal;
+  opacity: 1;
+}
+input:-o-input-placeholder,
+input:-moz-placeholder,
+input:-ms-input-placeholder,
+input:-webkit-input-placeholder {
+  color:$text-dark;
+  font-style: normal;
+  opacity: 1;
+}
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+  margin: 0 0 0 0;
+}
+#root,
+#__next {
+  isolation: isolate;
+}
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section,
+main {
+  display: block;
+}
+ol,
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+blockquote,
+q {
+  quotes: none;
+}
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: "";
+  content: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+hr {
+  box-sizing: content-box;
+  height: 0;
+  overflow: visible;
+}
+pre {
+  font-family: monospace, monospace;
+  font-size: 1em;
+}
+a {
+  background-color: transparent;
+  transition:$transition-base;
+  color:$primary;
+  -webkit-tap-highlight-color: transparent;
+  text-decoration:none;
+}
+a:hover,
+a:focus {
+  border: 0;
+  outline: 0;
+  color:$accent;
+}
+abbr[title] {
+  border-bottom: none;
+  text-decoration: underline;
+  -webkit-text-decoration: underline dotted;
+  text-decoration: underline dotted;
+}
+b,
+strong {
+  font-weight: bolder;
+}
+code,
+kbd,
+samp {
+  font-family: monospace, monospace;
+  font-size: 1em;
+}
+small {
+  font-size: 80%;
+}
+sub,
+sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+sub {
+  bottom: -0.25em;
+}
+sup {
+  top: -0.5em;
+}
+img {
+  border-style: none;
+  max-width: 100%;
+  -o-object-fit: cover;
+  object-fit: cover;
+}
+button,
+input,
+optgroup,
+select,
+textarea {
+  font-family: inherit;
+  font-size: 100%;
+  line-height: 1.5em;
+  margin: 0;
+}
+button,
+input {
+  overflow: visible;
+}
+button,
+select {
+  text-transform: none;
+}
+select {
+  appearance: none;
+  @include transition;
+  outline: 0;
+}
+button,
+.btn-primary,
+[type="button"],
+[type="reset"],
+[type="submit"] {
+  @include button;
+}
+button::-moz-focus-inner,
+[type="button"]::-moz-focus-inner,
+[type="reset"]::-moz-focus-inner,
+[type="submit"]::-moz-focus-inner {
+  border-style: none;
+  padding: 0;
+}
+button:-moz-focusring,
+[type="button"]:-moz-focusring,
+[type="reset"]:-moz-focusring,
+[type="submit"]:-moz-focusring {
+  outline: 0.063rem dotted ButtonText;
+}
+fieldset {
+  padding: 0.35em 0.75em 0.625em;
+}
+legend {
+  box-sizing: border-box;
+  color: inherit;
+  display: table;
+  max-width: 100%;
+  padding: 0;
+  white-space: normal;
+}
+progress {
+  vertical-align: baseline;
+}
+textarea {
+  overflow: auto;
+}
+[type="checkbox"],
+[type="radio"] {
+  box-sizing: border-box;
+  padding: 0;
+}
+[type="number"]::-webkit-inner-spin-button,
+[type="number"]::-webkit-outer-spin-button {
+  height: auto;
+}
+[type="search"] {
+  appearance: textfield;
+  outline-offset: -0.125rem;
+}
+[type="search"]::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+::-webkit-file-upload-button {
+  -webkit-appearance: button;
+  font: inherit;
+}
+details {
+  display: block;
+}
+summary {
+  display: list-item;
+}
+template {
+  display: none;
+}
+[hidden] {
+  display: none;
+}
+.h1,
+h1,
+.h2,
+h2,
+.h3,
+h3,
+.h4,
+h4,
+.h5,
+h5,
+.h6,
+h6 {
+  margin: 0 0 1rem;
+  line-height: 1.2em;
+  font-weight:$font-bold;
+  color:$primary;
+  font-family:$font-secondary;
+}
+.h1,
+h1 {
+  font-size: 2.778rem;
+}
+.h2,
+h2 {
+  font-size: 2.5rem;
+}
+.h3,
+h3 {
+  font-size: 1.875rem;
+}
+.h4,
+h4 {
+  font-size: 1.667rem;
+}
+.h5,
+h5 {
+  font-size: 1rem;
+}
+.h6,
+h6 {
+  font-size: 0.778rem;
+}
+p {
+  margin: 0 0 1rem;
+  font-weight: 300;
+}
+[data-toggle] {
+  cursor: pointer;
+}
+input,
+input[type="text"],
+input[type="textarea"],
+input[type="email"],
+input[type="date"],
+input[type="datetime"],
+input[type="color"],
+input[type="time"],
+input[type="month"],
+input[type="week"],
+input[type="radio"],
+input[type="number"],
+input[type="select"],
+textarea {
+  width: 100%;
+  max-width: 100%;
+  border: 0.125rem solid #dedede;
+  padding: 1.3125rem 1.5rem;
+  margin: 0 0 1.9rem 0;
+  border-radius: 0.3125rem;
+  @include transition;
+}
+@media only screen and (max-width: 575px) {
+  input,
+  input[type="text"],
+  input[type="textarea"],
+  input[type="email"],
+  input[type="date"],
+  input[type="datetime"],
+  input[type="color"],
+  input[type="time"],
+  input[type="month"],
+  input[type="week"],
+  input[type="radio"],
+  input[type="number"],
+  input[type="select"],
+  textarea {
+    max-width: 100%;
+  }
+}
+input:focus,
+input[type="text"]:focus,
+input[type="textarea"]:focus,
+input[type="email"]:focus,
+input[type="date"]:focus,
+input[type="datetime"]:focus,
+input[type="color"]:focus,
+input[type="time"]:focus,
+input[type="month"]:focus,
+input[type="week"]:focus,
+input[type="radio"]:focus,
+input[type="number"]:focus,
+textarea:focus {
+  outline: none;
+  border-color: #f2cd1a;
+}
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  appearance: none;
+}
+input[type="number"] {
+  -moz-appearance: textfield;
+  -webkit-appearance: textfield;
+  appearance: textfield;
+}

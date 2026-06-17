@@ -1,0 +1,91 @@
+@use "../styles/variables" as *;
+@use "../styles/mixins" as *;
+
+.projects{
+
+    //media query styling max-width:567px
+    @include down(sm){
+        @include padding-inline(1rem);
+    }
+    
+    &__title{
+        text-align:center;
+        color:$text-dark;
+        margin: 0 0 3rem 0;
+    }
+
+    &__list {
+         li{
+            display:block;
+            @include position(sticky,
+            $top:0,);
+            a {
+                @include flex();
+                @include position(relative);
+                z-index:1;
+                .link__text {
+                    @include position(absolute,
+                    $top:50%,
+                    $left:50%,
+                    $right:0);
+                    z-index:10;
+                    background-color:$text-light;
+                    width: 10rem;
+                    height: 10rem;
+                    border-radius: 100%;
+                    text-transform: capitalize;
+                    font-weight: 800;
+                    color:$text-dark;
+                    @include flex();
+                    transform: translate(-50%, -50%);
+                    visibility:hidden;
+                    opacity:0;
+                    transition:$transition-base;
+                }
+                
+                img{
+                    border-radius:1.25rem;
+                }
+
+                &:before{
+                    content:"";
+                    @include position(absolute,
+                    $top:0,
+                    $left:0,);
+                    width:100%;
+                    height:100%;
+                    z-index:1;
+                    background-color:transparent;
+                    opacity: 0;
+                    visibility:hidden;
+                    transition:$transition-base;
+                    border-radius:1.25rem;
+                }
+
+                &:hover{
+                    .link__text {
+                        visibility:visible;
+                        opacity:1;
+                    }
+
+                    &:before{
+                    background-color:$text-dark;
+                    opacity:0.5;
+                    visibility:visible;
+                    }
+                }
+            }
+         }
+    }
+
+    &__cta{
+        @include flex();
+        padding: 2rem 0 0 0;
+        
+        .btn {
+            svg {
+                transform: translate(0.188rem, 0);
+            }
+        }
+    }
+}

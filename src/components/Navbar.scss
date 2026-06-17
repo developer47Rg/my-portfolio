@@ -1,0 +1,215 @@
+@use "../styles/variables" as *;
+@use "../styles/mixins" as *;
+
+//navbar styling
+.navbar {
+    @include spacing(margin-top, 1.25rem);
+    @include position(sticky,
+        $top:0,
+    );
+    z-index:$z-header;
+
+    //media query styling max-width:576px
+    @include down(sm){
+        @include padding-inline(1rem);
+    }
+
+    // container styling
+    &__container {
+        @include flex(center, space-between);
+        @include border($color:$text-dark); 
+        padding:0.5rem 1rem;
+        border-radius: $radius-lg;
+        background-color:$text-light;
+        @include position(relative);
+    }
+    
+    // logo styling
+    &__logo {
+        font-family: "Syne", sans-serif;
+        font-size:2rem;
+        line-height:1.2;
+        font-weight:800;
+        @include position(relative);
+        @include spacing(padding-left, 2rem);
+        color:$primary;
+        &-icon {
+            @include position(absolute,
+                $top:0rem,
+                $left:0rem
+            );
+            transform: rotate(-3deg);
+            svg {
+               width:2rem;
+            }
+        }
+        &:hover {
+            color:$accent-dark;
+        }
+    }
+
+    // menu styling
+    &__menu{
+        @include flex(center, space-between);
+        width: 100%;
+        max-width: 33rem;
+
+        // media query styling max-width:992px
+        @include down(lg){
+            max-width:25rem;
+        }
+
+        // media query styling max-width:768px
+        @include down(md){
+            @include position(fixed,
+            $top:0,
+            $right:-100%,
+            $bottom:0,                
+            );
+            z-index:$z-header;
+            background: rgba(255, 255, 255, 0.2); 
+            backdrop-filter: blur(1.25rem); 
+            @include border($color:rgba(255, 255, 255, 0.3));
+            box-shadow: 0 0.25rem 0.375rem $text-dark;
+            padding:2rem;
+            transition: all .45s ease-in-out;
+            overflow-y: scroll;
+            visibility:hidden;
+            opacity:0;
+
+            // mobile menu active styling
+            &--active {
+                right:0;
+                visibility:visible;
+                opacity:1;
+                display:block;
+                li {
+                    display: block;
+                    a{
+                        font-size:2rem;
+                        padding:0.5rem 0.5rem 1.5rem 0.5rem;
+                    }
+                }
+            }
+        }
+    }
+
+    // menu li styling
+    &__item{
+        display:inline-flex;
+    }
+
+    // menu link styling
+    &__link{
+        font-weight:800;
+        font-size: 1.125rem;
+        @include position(relative);
+        overflow:hidden;
+        padding:0px 0.75rem 0.063rem 0px;
+        color:$primary;
+
+        // Link text styling
+        &-text{
+            transform: translateY(0);
+            display: block;
+            @include transition;
+        }
+
+        // link before styling
+        &:before{
+            content: attr(data-title);
+            font-size: 1.125rem;
+            @include position(
+                absolute,
+                $top:0,
+                $left:0,
+            );
+            padding:0px 0.75rem 0.063rem 0px;
+            transform: translateY(1.4rem);
+            @include transition;
+
+            // media query styling max-width:768px
+            @include down(md){
+                font-size:2rem;
+                padding:0.5rem 0.5rem 1.5rem 0.5rem;
+                transform: translateY(3rem);
+            }
+        }
+
+        // link icon styling
+        &-icon{
+            width: 0.7rem;
+            @include position(
+                absolute,
+                $bottom:0,
+                $right:0
+            );
+            transform: rotate(-70deg);
+        }
+
+        // link hover styling
+        &:hover {
+            color:$text-dark;
+            .navbar__link-text{
+                transform:translateY(-1.4rem);
+
+                // media query max-width:768px
+                @include down(md){
+                    transform:translateY(-3rem);
+                }
+            }
+            .navbar__link-icon {
+                fill:$accent-dark;
+            }
+        }
+        &:hover:before{
+            transform: translateY(0);
+            color:$accent-dark;
+        }
+        
+    }
+
+    //cta for downlodaing resume styling
+    &__cta{
+        svg{
+            width: 1rem;
+            transform: translate(0.188rem, 0.125rem);
+        }
+    }
+
+    // mobile open toggle styling
+    &__toggle{
+        display:none;
+        @include down(md){
+           display:block;
+           width:2rem;
+           fill:$primary;
+        }
+    }
+
+    // nav action button & svg styling
+    &__actions{
+
+        //media query styling max-width:768px
+        @include down(md){
+            @include flex();
+            gap: 2rem;
+        }
+    }
+
+    //mobile cta block for close toggle & logo icon styling
+    &__mobile--cta {
+        display:none;
+        @include down(md){
+            @include flex(center, space-between);
+            @include spacing(padding-bottom, 1.5rem);
+            @include spacing(margin-bottom, 1rem);
+            @include border (bottom, $color:$fat-tuesday);
+            svg {
+                width:2.5rem;
+                fill:$primary;
+            }
+        }
+    }
+    
+}
