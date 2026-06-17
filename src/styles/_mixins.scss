@@ -201,10 +201,7 @@
   -webkit-tap-highlight-color: transparent;
   @include transition;
   @include flex(center, space-between);
-  // svg{
-  //   width:0.75rem;
-  //   @include transition;
-  // }
+  
   // on hover
   &:hover {
     background:$accent-dark;
@@ -212,21 +209,9 @@
     border-radius:0.375rem;
     box-shadow:none;
     color: $color;
-    // svg {
-    //   transform:translateX(0.25rem);
-    // }
   }
-  // on focus
-  // &:focus:not(:focus-visible):not(.focus-visible) {
-  //   @include border($color:$accent-dark);
-  //   border-radius:0.375rem;
-  //   box-shadow:none;
-  //   outline: none;
-  //   background:$accent;
-  //   color: $color;
-  // }
+
   &:focus {
-    @include border($color:$accent);
     border-radius:0.375rem;
     border:0;
     box-shadow:none;
@@ -241,7 +226,6 @@
   }
   &:active {
     background:$accent-dark;
-    @include border($color:$accent);
     border-radius:0.375rem;
     border:0;
     box-shadow:none;

@@ -24,7 +24,8 @@
 
     &:hover {
       transform: translateY(-3px);
-      border-color: $primary;
+      background-color: $primary;
+      color: $text-light;
     }
   }
 }
